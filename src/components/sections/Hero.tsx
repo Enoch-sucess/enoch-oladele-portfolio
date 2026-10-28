@@ -1,0 +1,49 @@
+import SocialLinks from "../ui/SocialLinks";
+import { profile } from "../../data/portfolio";
+
+const Hero = () => {
+  return (
+    <section
+      id="home"
+      className="relative min-h-svh overflow-hidden bg-surface"
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 hidden bg-black md:block [clip-path:polygon(49%_0,100%_0,100%_100%,40%_100%)] border-none"
+      />
+
+      <div className="relative z-10 mx-auto grid min-h-svh max-w-7xl grid-cols-1 items-center gap-10 px-6 pt-24 md:grid-cols-2 md:px-12 lg:px-20">
+        <div className="order-2 flex flex-col justify-center gap-3 pb-12 md:order-1 md:pb-0">
+          <p className="text-xl font-semibold uppercase text-black">
+            {profile.greeting}
+          </p>
+
+          <h1 className="text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl mt-5">
+            {profile.name}
+          </h1>
+
+          <p className="text-sm text-muted sm:text-lg">{profile.role}</p>
+
+          <div className="pt-5">
+            <SocialLinks variant="boxed" className="" />
+          </div>
+        </div>
+
+        <div className="order-1 flex min-h-[420px] items-end justify-center md:order-2 md:min-h-svh">
+          <div className="relative flex h-full w-full max-w-lg items-end justify-center">
+            <img
+              src={profile.photo}
+              alt={profile.photoAlt}
+              width={1024}
+              height={1536}
+              fetchPriority="high"
+              className="relative z-10 max-h-[80vh] w-full object-contain object-bottom md:max-h-[90vh]"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
