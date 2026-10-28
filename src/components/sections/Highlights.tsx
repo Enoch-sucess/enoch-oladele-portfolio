@@ -1,4 +1,5 @@
 import BracketButton from "../ui/BracketButton";
+import Reveal from "../ui/Reveal";
 import { highlight } from "../../data/portfolio";
 
 const Highlights = () => {
@@ -7,7 +8,7 @@ const Highlights = () => {
       aria-labelledby="highlights-heading"
       className="bg-highlight text-white"
     >
-      <div className="mx-auto flex max-w-7xl flex-col items-start gap-5 px-6 py-12 md:px-12 md:py-16 lg:px-20">
+      <Reveal className="mx-auto flex max-w-7xl flex-col items-start gap-5 px-6 py-12 md:px-12 md:py-16 lg:px-20">
         <h2
           id="highlights-heading"
           className="text-xs font-bold uppercase tracking-[0.25em] text-paper"
@@ -20,7 +21,7 @@ const Highlights = () => {
         <BracketButton href={highlight.ctaHref}>
           {highlight.ctaLabel}
         </BracketButton>
-      </div>
+      </Reveal>
     </section>
   );
 };

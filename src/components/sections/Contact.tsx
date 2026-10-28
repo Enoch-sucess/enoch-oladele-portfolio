@@ -1,3 +1,4 @@
+import Reveal from "../ui/Reveal";
 import { useState, type FormEvent } from "react";
 import BracketButton from "../ui/BracketButton";
 import SectionHeading from "../ui/SectionHeading";
@@ -90,135 +91,141 @@ const Contact = () => {
       id="contact"
       className="px-6 pb-section pt-section md:px-12 lg:px-20"
     >
-      <SectionHeading title="Contact" />
+      <Reveal>
+        <SectionHeading title="Contact" />
+      </Reveal>
 
       <p className="mx-auto mt-6 max-w-xl text-center text-sm leading-relaxed text-ink/80">
         Have a project in mind, or a role you think I would be a good fit for?
         Send me a message and I will get back to you.
       </p>
 
-      <form
-        onSubmit={handleSubmit}
-        noValidate
-        className="mx-auto mt-12 flex max-w-xl flex-col gap-8"
-      >
-        <input
-          type="hidden"
-          name="_subject"
-          value="New message from your portfolio"
-        />
-
-        {/* Honeypot: hidden from people, bots tend to fill it in. */}
-        <input
-          type="text"
-          name="_gotcha"
-          tabIndex={-1}
-          autoComplete="off"
-          aria-hidden="true"
-          style={{ display: "none" }}
-        />
-
-        <div className="flex flex-col gap-2">
-          <label htmlFor="contact-name" className={labelClasses}>
-            Name
-          </label>
+      <Reveal>
+        <form
+          onSubmit={handleSubmit}
+          noValidate
+          className="mx-auto mt-12 flex max-w-xl flex-col gap-8"
+        >
           <input
-            id="contact-name"
-            name="name"
+            type="hidden"
+            name="_subject"
+            value="New message from your portfolio"
+          />
+
+          {/* Honeypot: hidden from people, bots tend to fill it in. */}
+          <input
             type="text"
-            autoComplete="name"
-            placeholder="Enter your name"
-            aria-required="true"
-            aria-invalid={errors.name ? "true" : undefined}
-            aria-describedby={errors.name ? "contact-name-error" : undefined}
-            className={fieldClasses}
+            name="_gotcha"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ display: "none" }}
           />
-          {errors.name && (
-            <p id="contact-name-error" className={errorClasses}>
-              {errors.name}
-            </p>
-          )}
-        </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="contact-email" className={labelClasses}>
-            Email
-          </label>
-          <input
-            id="contact-email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            placeholder="Enter your email"
-            aria-required="true"
-            aria-invalid={errors.email ? "true" : undefined}
-            aria-describedby={errors.email ? "contact-email-error" : undefined}
-            className={fieldClasses}
-          />
-          {errors.email && (
-            <p id="contact-email-error" className={errorClasses}>
-              {errors.email}
-            </p>
-          )}
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <label htmlFor="contact-message" className={labelClasses}>
-            Message
-          </label>
-          <textarea
-            id="contact-message"
-            name="message"
-            rows={6}
-            maxLength={2000}
-            placeholder="Your message"
-            aria-required="true"
-            aria-invalid={errors.message ? "true" : undefined}
-            aria-describedby={
-              errors.message ? "contact-message-error" : undefined
-            }
-            className={`${fieldClasses} resize-y`}
-          />
-          {errors.message && (
-            <p id="contact-message-error" className={errorClasses}>
-              {errors.message}
-            </p>
-          )}
-        </div>
-
-        <div className="flex flex-col items-center gap-4">
-          <div className="text-black">
-            <BracketButton type="submit">
-              {status === "sending" ? "Sending..." : "Submit"}
-            </BracketButton>
-          </div>
-
-          <div aria-live="polite" className="text-center text-sm">
-            {status === "success" && (
-              <p className="font-semibold text-green-800">
-                Thank you, your message has been sent. I will get back to you
-                soon.
-              </p>
-            )}
-            {status === "error" && (
-              <p className="font-semibold text-red-700">
-                Something went wrong and your message was not sent. Please try
-                again
-                {emailLink && (
-                  <>
-                    {" "}
-                    or email me directly at{" "}
-                    <a href={emailLink} className="underline">
-                      {emailLink.replace("mailto:", "")}
-                    </a>
-                  </>
-                )}
-                .
+          <div className="flex flex-col gap-2">
+            <label htmlFor="contact-name" className={labelClasses}>
+              Name
+            </label>
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              autoComplete="name"
+              placeholder="Enter your name"
+              aria-required="true"
+              aria-invalid={errors.name ? "true" : undefined}
+              aria-describedby={errors.name ? "contact-name-error" : undefined}
+              className={fieldClasses}
+            />
+            {errors.name && (
+              <p id="contact-name-error" className={errorClasses}>
+                {errors.name}
               </p>
             )}
           </div>
-        </div>
-      </form>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="contact-email" className={labelClasses}>
+              Email
+            </label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              placeholder="Enter your email"
+              aria-required="true"
+              aria-invalid={errors.email ? "true" : undefined}
+              aria-describedby={
+                errors.email ? "contact-email-error" : undefined
+              }
+              className={fieldClasses}
+            />
+            {errors.email && (
+              <p id="contact-email-error" className={errorClasses}>
+                {errors.email}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="contact-message" className={labelClasses}>
+              Message
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows={6}
+              maxLength={2000}
+              placeholder="Your message"
+              aria-required="true"
+              aria-invalid={errors.message ? "true" : undefined}
+              aria-describedby={
+                errors.message ? "contact-message-error" : undefined
+              }
+              className={`${fieldClasses} resize-y`}
+            />
+            {errors.message && (
+              <p id="contact-message-error" className={errorClasses}>
+                {errors.message}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col items-center gap-4">
+            <div className="text-black">
+              <BracketButton type="submit">
+                {status === "sending" ? "Sending..." : "Submit"}
+              </BracketButton>
+            </div>
+
+            <div aria-live="polite" className="text-center text-sm">
+              {status === "success" && (
+                <p className="font-semibold text-green-800">
+                  Thank you, your message has been sent. I will get back to you
+                  soon.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="font-semibold text-red-700">
+                  Something went wrong and your message was not sent. Please try
+                  again
+                  {emailLink && (
+                    <>
+                      {" "}
+                      or email me directly at{" "}
+                      <a href={emailLink} className="underline">
+                        {emailLink.replace("mailto:", "")}
+                      </a>
+                    </>
+                  )}
+                  .
+                </p>
+              )}
+            </div>
+          </div>
+        </form>
+      </Reveal>
     </section>
   );
 };

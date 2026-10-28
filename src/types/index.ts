@@ -83,3 +83,13 @@ export type ProjectDetails = {
   challenges: { problem: string; solution: string }[];
   lessons: string[];
 };
+
+export type ApproachPoint = {
+  title: string;
+  description: string;
+};
+
+export type Approach = {
+  intro: string;
+  points: ApproachPoint[];
+};

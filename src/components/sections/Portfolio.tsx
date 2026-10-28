@@ -1,3 +1,6 @@
+import { motion } from "motion/react";
+import Reveal from "../ui/Reveal";
+import { fadeUp, viewportOnce } from "../../lib/motion";
 import BracketButton from "../ui/BracketButton";
 import SectionHeading from "../ui/SectionHeading";
 import { projects } from "../../data/portfolio";
@@ -59,17 +62,24 @@ const Portfolio = () => {
   return (
     <section id="projects">
       <div className="px-6 pb-12 pt-section md:px-12 lg:px-20">
-        <SectionHeading title="Projects" />
-        <p className="mx-auto mt-6 max-w-xl text-center text-md leading-relaxed text-ink/80">
-          A few recently selected projects.
-        </p>
+        <Reveal>
+          <SectionHeading title="Projects" />
+          <p className="mx-auto mt-6 max-w-xl text-center text-md leading-relaxed text-ink/80">
+            A few recently selected projects.
+          </p>
+        </Reveal>
       </div>
 
       <div className="bg-ink">
         <ul className="grid gap-px bg-black md:grid-cols-2">
-          {projects.map((project) => (
-            <li
+          {projects.map((project, index) => (
+            <motion.li
               key={project.title}
+              variants={fadeUp}
+              custom={(index % 2) * 0.12}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
               className="group relative overflow-hidden bg-ink"
             >
               <Link
@@ -98,7 +108,7 @@ const Portfolio = () => {
               <div className="flex flex-col items-center gap-3 p-6 text-center text-white lg:hidden">
                 <ProjectInfo project={project} />
               </div>
-            </li>
+            </motion.li>
           ))}
         </ul>
 

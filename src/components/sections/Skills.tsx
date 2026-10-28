@@ -1,4 +1,5 @@
 import type { IconType } from "react-icons";
+import { motion } from "motion/react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -18,7 +19,9 @@ import {
   SiPostgresql,
 } from "react-icons/si";
 import SectionHeading from "../ui/SectionHeading";
+import Reveal from "../ui/Reveal";
 import { skillGroups } from "../../data/portfolio";
+import { fadeUp, viewportOnce } from "../../lib/motion";
 import type { SkillIcon } from "../../types";
 
 const iconLookup: Record<SkillIcon, { Icon: IconType; color: string }> = {
@@ -42,33 +45,40 @@ const Skills = () => {
   return (
     <section id="skills" className="px-6 py-section md:px-12 lg:px-20">
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12">
-        <SectionHeading title="Skills" />
+        <Reveal>
+          <SectionHeading title="Skills" />
+        </Reveal>
 
         <div className="flex w-full flex-col gap-14">
           {skillGroups.map((group) => (
-            <div key={group.title} className="flex flex-col gap-8">
+            <Reveal key={group.title} className="flex flex-col gap-8">
               <h3 className="text-sm font-bold uppercase tracking-[0.25em] text-black">
                 {group.title}:
               </h3>
 
               <ul className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4">
-                {group.skills.map((skill) => {
+                {group.skills.map((skill, index) => {
                   const { Icon, color } = iconLookup[skill.icon];
 
                   return (
-                    <li
+                    <motion.li
                       key={skill.name}
+                      variants={fadeUp}
+                      custom={index * 0.06}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={viewportOnce}
                       className="flex flex-col items-center gap-3 text-center"
                     >
                       <Icon size={44} color={color} aria-hidden="true" />
                       <span className="text-xs font-medium uppercase tracking-[0.2em] text-black">
                         {skill.name}
                       </span>
-                    </li>
+                    </motion.li>
                   );
                 })}
               </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

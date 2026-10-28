@@ -6,6 +6,7 @@ import type {
   About,
   SkillGroup,
   Project,
+  Approach,
 } from "../types";
 
 export const socialLinks: SocialLink[] = [
@@ -121,6 +122,39 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
 ];
+
+export const approach: Approach = {
+  intro:
+    "To me, web development is about making everyday tasks easier for real people. That means the parts users never see matter as much as the interface: correct data, safe access, and an app that behaves the same live as it does on my machine. These are the habits I try to bring to every project.",
+  points: [
+    {
+      title: "Get the data right first",
+      description:
+        "Before I build a feature, I work out what the data actually represents. In Tix Arena, treating a ticket tier and a ticket sale as one thing would have broken as soon as two people bought the same tier, so I split them into separate records.",
+    },
+    {
+      title: "Enforce rules where they can't be skipped",
+      description:
+        "Important rules belong in the database and the server, not in code that runs in between. Stock is decremented in one atomic operation, passwords are hashed in the user model, and roles are only ever set on the server.",
+    },
+    {
+      title: "Debug one layer at a time",
+      description:
+        "When a bug spans the front end and the back end, I check each layer in order instead of guessing. On Goal-On, tracing a request from the browser to the API showed me exactly where authentication was breaking.",
+    },
+    {
+      title: "Treat secrets and deployment seriously",
+      description:
+        "Secrets never go into version control, and deployed services have to agree exactly. After committing a .env file by mistake, I set up .gitignore before the first commit on every project and keep configuration in environment variables.",
+    },
+
+    {
+      title: "Make the code tell a story",
+      description:
+        "Good code reads like a story: each piece of logic leads to the next, and the pieces work together. For every action I ask what happens if it works and what happens if it doesn't, so every path ends in a clear response. If the input is valid, the app does its job. If not, it says exactly what is wrong. Either way, the user is never left guessing. The contact form on this site works that way: invalid input points to the exact field, a failed send offers a fallback, and a successful send confirms it.",
+    },
+  ],
+};
 
 export const projects: Project[] = [
   {

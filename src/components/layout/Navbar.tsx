@@ -4,7 +4,9 @@ import { FaBars, FaXmark } from "react-icons/fa6";
 import { navbarLinks } from "../../data/portfolio";
 import MobileMenu from "./MobileMenu";
 import { Link, useLocation } from "react-router-dom";
+import useActiveSection from "../../hooks/useActiveSection";
 
+const sectionIds = ["home", "about", "skills", "approach", "projects"];
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -83,6 +85,8 @@ const Navbar = () => {
   const isHome = pathname === "/";
   const solid = scrolled || isOpen || !isHome;
 
+  const activeSection = useActiveSection(sectionIds, isHome);
+
   return (
     <>
       <header
@@ -112,20 +116,27 @@ const Navbar = () => {
           {/* Desktop Navigation and Download CV*/}
           <div className="hidden items-center gap-6 text-white lg:flex">
             <ul className="flex items-center gap-6 ">
-              {navbarLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    to={`/${link.href}`}
-                    className={`text-xs font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${
-                      link.isButton
-                        ? "rounded-full bg-white px-4 py-2 text-black hover:bg-gray-200 hover:text-black"
-                        : "hover:text-gray-300"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {navbarLinks.map((link) => {
+                const isActive = isHome && activeSection === link.href.slice(1);
+
+                return (
+                  <li key={link.label}>
+                    <Link
+                      to={`/${link.href}`}
+                      aria-current={isActive ? "location" : undefined}
+                      className={`text-xs font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${
+                        link.isButton
+                          ? "rounded-full bg-white px-4 py-2 text-black hover:bg-gray-200 hover:text-black"
+                          : isActive
+                            ? "underline decoration-2 underline-offset-8"
+                            : "hover:text-gray-300"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* Desktop Download CV */}
