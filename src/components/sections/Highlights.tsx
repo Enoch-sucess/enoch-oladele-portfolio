@@ -8,7 +8,7 @@ const Highlights = () => {
       aria-labelledby="highlights-heading"
       className="bg-highlight text-white"
     >
-      <Reveal className="mx-auto flex max-w-7xl flex-col items-start gap-5 px-6 py-12 md:px-12 md:py-16 lg:px-20">
+      <Reveal className="mx-auto flex max-w-7xl flex-col items-center gap-5 px-6 py-12 md:items-start md:px-12 md:py-16 lg:px-20">
         <h2
           id="highlights-heading"
           className="text-xs font-bold uppercase tracking-[0.25em] text-paper"
@@ -18,7 +18,10 @@ const Highlights = () => {
         <p className="max-w-3xl text-sm leading-relaxed text-line md:text-base">
           {highlight.text}
         </p>
-        <BracketButton href={highlight.ctaHref}>
+        <BracketButton
+          href={highlight.ctaHref}
+          className="self-center md:self-start"
+        >
           {highlight.ctaLabel}
         </BracketButton>
       </Reveal>

@@ -9,6 +9,7 @@ type BracketButtonProps = {
   type?: "button" | "submit";
   external?: boolean;
   ariaLabel?: string;
+  className?: string;
 };
 
 const BracketButton = ({
