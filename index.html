@@ -16,13 +16,13 @@
       content="Enoch Oladele is a full-stack web developer building applications with React, TypeScript, Node.js, Express and MongoDB. View projects and get in touch."
     />
     <meta name="theme-color" content="#000000" />
-    <link rel="canonical" href="" />
+    <link rel="canonical" href="https://enoch-oladele-portfolio.vercel.app/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Enoch | Full Stack Web Developer" />
     <meta
       property="og:description"
-      content="Full-stack web developer building applications with React, TypeScript, Node.js, Express and MongoDb"
+      content="Full-stack web developer building applications with React, TypeScript, Node.js, Express and MongoDB"
     />
     <meta
       property="og:url"
@@ -34,7 +34,39 @@
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      property="og:image:alt"
+      content="Portrait illustration of Enoch Oladele in a navy suit"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://enoch-oladele-portfolio.vercel.app/#person",
+            "name": "Enoch Oladele",
+            "url": "https://enoch-oladele-portfolio.vercel.app/",
+            "jobTitle": "Full Stack Web Developer",
+            "sameAs": [
+              "https://www.linkedin.com/in/enoch-inioluwa-7bb30a201",
+              "https://github.com/Enoch-sucess"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://enoch-oladele-portfolio.vercel.app/#website",
+            "url": "https://enoch-oladele-portfolio.vercel.app/",
+            "name": "Enoch Oladele | Full Stack Web Developer",
+            "description": "Portfolio of Enoch Oladele, showcasing web development projects and skills.",
+            "author": {
+              "@id": "https://enoch-oladele-portfolio.vercel.app/#person"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

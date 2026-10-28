@@ -3,7 +3,47 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import BracketButton from "../components/ui/BracketButton";
 import { projects } from "../data/portfolio";
 
+const SITE_URL = "https://enoch-oladele-portfolio.vercel.app";
+
 const DEFAULT_TITLE = "Enoch Oladele | Full Stack Web Developer";
+
+const DEFAULT_DESCRIPTION =
+  "Enoch Oladele is a full-stack web developer building applications with React, TypeScript, Node.js, Express and MongoDB. View projects and get in touch.";
+
+const DEFAULT_OG_IMAGE =
+  "https://res.cloudinary.com/dzezte7kv/image/upload/c_pad,w_1200,h_630,b_rgb:d7d7d7/f_jpg/q_auto/Vector_Portrait_in_Navy_Suit.png";
+
+const setMeta = (
+  attribute: "name" | "property",
+  key: string,
+  content: string,
+) => {
+  let element = document.head.querySelector<HTMLMetaElement>(
+    `meta[${attribute}="${key}"]`,
+  );
+
+  if (!element) {
+    element = document.createElement("meta");
+    element.setAttribute(attribute, key);
+    document.head.appendChild(element);
+  }
+
+  element.content = content;
+};
+
+const setCanonical = (href: string) => {
+  let element = document.head.querySelector<HTMLLinkElement>(
+    'link[rel="canonical"]',
+  );
+
+  if (!element) {
+    element = document.createElement("link");
+    element.rel = "canonical";
+    document.head.appendChild(element);
+  }
+
+  element.href = href;
+};
 
 const DetailSection = ({
   title,
@@ -27,11 +67,46 @@ const ProjectDetail = () => {
   useEffect(() => {
     if (!project) return;
 
-    document.title = `${project.title} | Enoch Oladele`;
+    const title = `${project.title} | Enoch Oladele`;
+    const description = project.description;
+    const url = `${SITE_URL}/projects/${project.slug}`;
 
-    // Restore the default title when leaving the details page.
+    document.title = title;
+
+    setMeta("name", "description", description);
+    setCanonical(url);
+
+    setMeta("property", "og:type", "article");
+    setMeta("property", "og:title", title);
+    setMeta("property", "og:description", description);
+    setMeta("property", "og:url", url);
+    setMeta("property", "og:image", project.image);
+
+    setMeta("name", "twitter:card", "summary_large_image");
+    setMeta("name", "twitter:title", title);
+    setMeta("name", "twitter:description", description);
+    setMeta("name", "twitter:image", project.image);
+
     return () => {
       document.title = DEFAULT_TITLE;
+
+      setMeta("name", "description", DEFAULT_DESCRIPTION);
+      setCanonical(`${SITE_URL}/`);
+
+      setMeta("property", "og:type", "website");
+      setMeta("property", "og:title", "Enoch | Full Stack Web Developer");
+      setMeta(
+        "property",
+        "og:description",
+        "Full-stack web developer building applications with React, TypeScript, Node.js, Express and MongoDB.",
+      );
+      setMeta("property", "og:url", `${SITE_URL}/`);
+      setMeta("property", "og:image", DEFAULT_OG_IMAGE);
+
+      setMeta("name", "twitter:card", "summary_large_image");
+      setMeta("name", "twitter:title", "Enoch | Full Stack Web Developer");
+      setMeta("name", "twitter:description", DEFAULT_DESCRIPTION);
+      setMeta("name", "twitter:image", DEFAULT_OG_IMAGE);
     };
   }, [project]);
 
