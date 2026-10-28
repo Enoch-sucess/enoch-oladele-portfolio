@@ -1,4 +1,5 @@
-   User-agent: *
-   Allow: /
 
-   Sitemap: https://enoch-oladele-portfolio.vercel.app/sitemap.xml   
+User-agent: *
+Allow: /
+
+Sitemap: https://enoch-oladele-portfolio.vercel.app/sitemap.xml
