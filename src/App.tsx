@@ -6,6 +6,7 @@ import ScrollManager from "./components/layout/ScrollManager";
 import ScrollProgress from "./components/layout/ScrollProgress";
 import Home from "./pages/Home";
 import ProjectDetail from "./pages/ProjectDetails";
+import AvailabilityBadge from "./components/ui/AvailabilityBadge";
 
 const App = () => (
   <MotionConfig reducedMotion="user">
@@ -20,6 +21,7 @@ const App = () => (
       </Routes>
     </main>
     <Footer />
+    <AvailabilityBadge />
   </MotionConfig>
 );
 
